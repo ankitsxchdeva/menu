@@ -52,18 +52,17 @@ body {
   padding-inline: var(--space-md);
 }
 
-/* ---- Tab nav (pattern ported from ankitsxchdeva.github.io) -----
-   Muted until hovered/active; the underline grows on the underline
-   clock. One active tab paints the whole page in its theme. ------ */
+/* Tabs centered; a full section-gap separates nav from the menu body. */
 .tab-nav {
   display: flex;
-  gap: 0;
+  justify-content: center;
+  gap: var(--space-lg);
   padding-top: var(--space-lg);
+  margin-bottom: var(--space-xl);
 }
 .tab-link {
   position: relative;
   padding: 0.5em 0;
-  margin-right: var(--space-lg);
   font-size: var(--text-title);
   color: var(--muted);
   text-decoration: none;
@@ -116,9 +115,12 @@ main:focus { outline: none; }
 }
 .skip:focus { left: 0; }
 
-/* ---- Tab panels: one room visible at a time -------------------- */
+/* ---- Tab panels: one room visible at a time. Coffee centers only
+   its section separators (host call); cocktails stay left-aligned
+   wine-list rows. ----------------------------------------------- */
 .tab-panel { display: none; padding-bottom: var(--space-xl); }
 .tab-panel.active { display: block; }
+#tab-coffee .sub-label { text-align: center; }
 
 .sr-only {
   position: absolute;
@@ -152,6 +154,21 @@ main:focus { outline: none; }
   padding: 0.65em 0;
   border-bottom: var(--border-w) solid var(--border);
 }
+
+/* Cocktails: wine-list rows — name + variants left, spirit right. */
+#tab-cocktails .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-md);
+}
+.drink-main { min-width: 0; } /* let long variant lines wrap cleanly */
+.drink-spirit {
+  flex-shrink: 0;
+  color: var(--muted);
+  font-size: var(--text-meta);
+  text-align: right;
+}
 .row-name {
   display: block;
   font-size: var(--text-title);
@@ -178,12 +195,13 @@ main:focus { outline: none; }
   font-size: var(--text-meta);
 }
 
-/* Milk drinks: a 3-up grid, name directly above its cup diagram. */
+/* Milk drinks: a 3-up grid, name directly above its cup diagram.
+   The grid block itself is centered on the page (host call). */
 .milk-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
-  margin-top: var(--space-sm);
+  margin: var(--space-sm) auto 0;
   max-width: 360px;
 }
 .milk-cell {
@@ -233,7 +251,8 @@ noscript p {
 
 /* ---- Debug panel (?debug only; mono is earned: ids and debug) -- */
 .debug {
-  margin: 0 var(--space-md) var(--space-lg);
+  margin: 0 0 var(--space-lg);
+  text-align: left;
   padding: var(--space-sm) var(--space-md);
   border: var(--border-w) solid var(--border);
   border-radius: var(--radius-panel);

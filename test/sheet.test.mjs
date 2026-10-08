@@ -389,6 +389,7 @@ test("golden: real ingredients fixture parses to the exact frozen map", () => {
     "topo chico": true,        // recorded row has a trailing space; parser trims
     "grenadine": true,
     "condensed milk": true,
+    "sarti rosa": true,
   });
   assert.deepEqual(warnings, []);
 });
@@ -422,12 +423,12 @@ test("golden: real menu.js x real sheet -> exact visible slugs + exact warnings"
     ["traditional", "tommy's", "elderflower", "aperol", "mezcal"],
   );
   assert.deepEqual(bySlug["martini"].variants.map((v) => v.name), ["mudslide", "espresso"]);
-  assert.deepEqual(bySlug["spritz"].variants.map((v) => v.name), ["aperol", "hugo"]);
+  assert.deepEqual(bySlug["spritz"].variants.map((v) => v.name), ["aperol", "hugo", "sarti"]);
   assert.deepEqual(bySlug["old-fashioned"].variants.map((v) => v.name), ["bourbon", "rye", "oaxaca"]);
   assert.deepEqual(syrups, ["vanilla", "caramel", "chocolate"]);
   assert.deepEqual(extras.map((e) => e.name), ["plain", "salted", "vanilla"]);
-  assert.deepEqual(espresso.map((d) => d.name), ["americano", "flat white", "latte"]);
-  assert.deepEqual(specials.map((s) => s.name), ["mocha", "vietnamese iced coffee"]);
+  assert.deepEqual(espresso.map((d) => d.name), ["americano", "cortado", "latte"]);
+  assert.deepEqual(specials.map((s) => s.name), ["vietnamese iced coffee"]);
   // Every menu key has a sheet row: zero warnings.
   assert.deepEqual(warnings, []);
 });

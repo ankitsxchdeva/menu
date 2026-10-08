@@ -20,7 +20,7 @@ v0.7, catalog lane. Sibling app: ~/Documents/cocktails.
    lemon juice · lime juice · lychee puree · mezcal · orange liqueur ·
    prosecco · rye whiskey · simple syrup · soda water · tequila ·
    topo chico · vanilla · vodka · white rum · yellow chartreuse ·
-   condensed milk
+   condensed milk · sarti rosa
 
 3. Tab 2: rename it `beans`. Column A: current pour-over beans, one per row,
    free text, display order = row order. Empty tab → pour-over section hides.

@@ -17,14 +17,12 @@ export const MENU = {
     // Grid drinks. Always in stock; meta shows under the name.
     espresso: [
       { name: "americano" },
-      { name: "flat white" },
+      { name: "cortado" },
       { name: "latte", meta: "hot or iced" }
     ],
-    // Standalone coffee drinks, each gated on its ingredients (mocha on the
-    // chocolate syrup checkbox; chicory is always stocked, so vietnamese
-    // iced coffee hangs off condensed milk).
+    // Standalone coffee drinks, each gated on its ingredients (chicory is
+    // always stocked, so vietnamese iced coffee hangs off condensed milk).
     specials: [
-      { name: "mocha", meta: "espresso / chocolate / milk, hot or iced", ingredients: ["chocolate"] },
       { name: "vietnamese iced coffee", meta: "chicory coffee / condensed milk", ingredients: ["condensed milk"] }
     ],
     // Tea: always in stock, no checkboxes.
@@ -69,7 +67,8 @@ export const MENU = {
       desc: "prosecco",
       variants: [
         { name: "aperol", ingredients: ["aperol", "prosecco", "soda water"] },
-        { name: "hugo", ingredients: ["elderflower liqueur", "prosecco", "soda water"] }
+        { name: "hugo", ingredients: ["elderflower liqueur", "prosecco", "soda water"] },
+        { name: "sarti", ingredients: ["sarti rosa", "prosecco"] }
       ]
     },
     {

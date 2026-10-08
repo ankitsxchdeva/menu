@@ -147,10 +147,10 @@ const CUPS = {
     layers: [{ h: 52, fill: ESPRESSO_INK, opacity: 0.55 }],
     label: "americano: a nearly full cup of diluted espresso"
   },
-  "flat white": {
-    y: 50, h: 42,
-    layers: [{ h: 14, fill: ESPRESSO_INK }, { h: 22, fill: MILK_INK }],
-    label: "flat white: a short cup, a third espresso and the rest milk"
+  "cortado": {
+    y: 56, h: 36,
+    layers: [{ h: 14, fill: ESPRESSO_INK }, { h: 14, fill: MILK_INK }],
+    label: "cortado: a small cup, equal parts espresso and milk"
   },
   "latte": {
     y: 22, h: 70,
@@ -213,9 +213,6 @@ function renderCoffee(payload, derived) {
   }
   panel.appendChild(el("h3", { class: "sub-label", text: "espresso" }));
   panel.appendChild(buildMilkGrid(derived.espresso));
-  if (derived.specials.length) {
-    panel.appendChild(rowList(derived.specials.map((s) => ({ name: s.name, desc: s.meta }))));
-  }
   if (derived.syrups.length) {
     panel.appendChild(el("p", {
       class: "syrup-line",
@@ -233,6 +230,9 @@ function renderCoffee(payload, derived) {
       }));
     });
   }
+  if (derived.specials.length) {
+    panel.appendChild(rowList(derived.specials.map((s) => ({ name: s.name, desc: s.meta }))));
+  }
   panel.appendChild(el("h3", { class: "sub-label", text: "tea" }));
   panel.appendChild(el("p", { class: "tea-line", text: MENU.coffee.teas.join(" / ") }));
 }
@@ -245,13 +245,23 @@ function renderCocktails(derived) {
     panel.appendChild(el("p", { class: "notice", text: "no cocktails available right now." }));
     return;
   }
-  panel.appendChild(rowList(derived.cocktails.map((d) => {
-    const item = { name: d.name, desc: d.desc };
+  // Wine-list rows: name + variants left, spirit right-aligned and muted.
+  const ul = el("ul", { class: "menu-list" });
+  derived.cocktails.forEach((d) => {
+    const li = el("li", { class: "row" });
+    const main = el("span", { class: "drink-main" });
+    main.appendChild(el("span", { class: "row-name", text: d.name }));
     if (Array.isArray(d.variants)) {
-      item.variants = d.variants.map((v) => v.name).join(" / ");
+      main.appendChild(el("span", {
+        class: "row-meta",
+        text: d.variants.map((v) => v.name).join(" / ")
+      }));
     }
-    return item;
-  })));
+    li.appendChild(main);
+    li.appendChild(el("span", { class: "drink-spirit", text: d.desc }));
+    ul.appendChild(li);
+  });
+  panel.appendChild(ul);
 }
 
 function render(payload, derived) {
