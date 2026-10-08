@@ -1,0 +1,123 @@
+/* Colophon — canonical tokens (v0.4), vendored + adapted for the guest menu
+ * Human-readable spec: ~/Documents/design/DESIGN.md (§2, the canonical design).
+ * Adaptation (per plan.md): dark-token selectors are widened from
+ * :root[data-theme="dark"] to [data-theme="dark"] so the vars cascade into
+ * per-section wrappers (<section data-theme="light"> coffee, dark cocktails);
+ * the prefers-color-scheme media block is dropped because every section here
+ * carries its own fixed theme. No colors, spacing, type, or motion changed.
+ * Dark is the same room with the lights off.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* color — light (lavender paper) */
+  --bg: #f5f4fa;            /* lavender paper: page background, never #fff */
+  --fg: #30292f;            /* plum ink: primary text, never #000 */
+  --muted: #6a6884;         /* stone lilac: secondary text, AA on bg */
+  --border: #d8d6e8;        /* mist: all 1px hairlines */
+  --accent: #355691;        /* signal indigo: interactivity/state only */
+  --accent-hover: #5f5aa2;  /* wisteria: hover lift, focus outline */
+  --editorial: #bf5a4a;     /* coral ink: decorative marks only */
+
+  /* data hues — data values only (§5), never chrome */
+  --data-pos: #35744f;      /* soft sage: up, gains, wins */
+  --data-neg: #b4382f;      /* muted brick: down, losses, stops */
+  --data-warn: #9a6f1e;     /* ochre: drawdowns, caveats-as-data */
+  --data-bench: #8a86a3;    /* lilac stone, in-family: neutral comparison series */
+
+  /* typography */
+  --font-sans: "Lato", Verdana, Helvetica, sans-serif;
+  --font-mono: monospace;   /* earned only: data, ids, kbd hints */
+
+  --text-badge: 10px;
+  --text-meta: 11px;
+  --text-label: 12px;
+  --text-small: 13px;
+  --text-title: 14px;
+  --text-body: 15px;
+  --text-lede: 17px;
+  --text-display: 32px;     /* one use per page */
+
+  /* tracking — three sanctioned values, nothing else */
+  --tracking-display: -0.5px;
+  --tracking-kicker: 0.08em;  /* the one uppercase kicker per page, max */
+
+  /* the dimming ladder: fg -> muted -> muted at --dim. Nothing else recedes. */
+  --dim: 0.75;
+
+  --leading-body: 1.65;
+  --leading-small: 1.5;
+  --leading-lede: 1.6;
+  --leading-display: 1.2;
+
+  /* shape — flat by default, hairlines carry structure.
+   * Radius has jobs, not vibes: */
+  --radius-hairline: 2px;   /* controls, badges, kbd, focus rings */
+  --radius-panel: 3px;      /* popovers, panels */
+  --radius-card: 8px;       /* media tiles and cards (catalog lane) */
+  --radius-full: 50%;       /* the single avatar-class image */
+  --border-w: 1px;
+
+  /* spacing (em, relative to context) */
+  --space-xs: 0.25em;
+  --space-sm: 0.5em;
+  --space-md: 1em;
+  --space-lg: 1.75em;
+  --space-xl: 3.5em;
+
+  /* layout */
+  --measure: 68ch;          /* prose cap */
+  --content-max: 1360px;
+
+  /* motion — the one clock: all state transitions use this */
+  --t: 150ms cubic-bezier(0.25, 1, 0.5, 1);
+  --t-underline: 250ms ease;
+  --t-entrance: 450ms;      /* translateY(14px) + fade, stagger ≤70ms, cap 600ms total */
+
+  /* focus — visible state, never suppressed without replacement */
+  --focus-ring: 2px solid var(--accent-hover);
+  --focus-offset: 3px;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #1e1c22;            /* night plum */
+  --fg: #e8e4f4;            /* pale lavender */
+  --muted: #8e8aab;         /* deep stone lilac, AA on bg */
+  --border: #413f54;        /* aubergine */
+  --accent: #8b87c8;        /* wisteria signal */
+  --accent-hover: #9db8dc;  /* sky indigo */
+  --editorial: #de9180;     /* pale coral */
+
+  --data-pos: #7fb98a;
+  --data-neg: #d97066;
+  --data-warn: #d9a85c;
+  --data-bench: #6e6a85;
+}
+
+/* selection: inverted accent, tinted on both sides */
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* focus: one ring for everything, offset, softly squared */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-radius: var(--radius-hairline);
+}
+
+/* reduced motion: everything lands instantly, no exceptions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

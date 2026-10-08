@@ -1,0 +1,2 @@
+/*O_o*/
+google.visualization.Query.setResponse({"version":"0.6","reqId":"0","status":"ok","sig":"SYNTHETIC","table":{"cols":[{"id":"A","label":"item","type":"string"},{"id":"B","label":"available","type":"boolean"}],"rows":[{"c":[{"v":"Agave"},{"v":"TRUE"}]},{"c":[{"v":"Lime"},{"v":true}]}]}});

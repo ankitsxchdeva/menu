@@ -1,0 +1,2 @@
+/*O_o*/
+google.visualization.Query.setResponse({"version":"0.6","reqId":"0","status":"ok","sig":"596812275","table":{"cols":[{"id":"A","label":"","type":"string"}],"rows":[{"c":[{"v":"tanat - washed ethiopian - jasmine/peach/sencha"}]},{"c":[{"v":"dak - fermented columbian - cardamom/pistachio/cake"}]}],"parsedNumHeaders":0}});

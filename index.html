@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>menu</title>
+  <meta name="description" content="coffee and cocktails for guests of the apartment." />
+
+  <!-- Favicon: cocktail glass by default; the inline script below swaps in
+       the coffee cup for coffee mode (and app.js swaps on tab change) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23bf5a4a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 4h14l-7 8z'/%3E%3Cpath d='M12 12v6'/%3E%3Cpath d='M8 20h8'/%3E%3C/svg%3E" />
+
+  <!-- Paint the right theme + icon before first paint: an explicit hash tab
+       wins; otherwise coffee before 5pm, cocktails after. app.js mirrors
+       this, including the icon data URI (duplication is the price of
+       pre-paint). -->
+  <script>
+    try {
+      var h = (location.hash || "").replace(/^#\/?/, "");
+      var t = (h === "coffee" || h === "cocktails") ? h : (new Date().getHours() < 17 ? "coffee" : "cocktails");
+      document.documentElement.dataset.theme = t === "cocktails" ? "dark" : "light";
+      document.documentElement.classList.add("js");
+      if (t === "coffee") {
+        document.querySelector("link[rel='icon']").href = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23bf5a4a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 8h1a4 4 0 0 1 0 8h-1'/%3E%3Cpath d='M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z'/%3E%3Cpath d='M6 1v3M10 1v3M14 1v3'/%3E%3C/svg%3E";
+      }
+    } catch (e) { /* the light default still applies */ }
+  </script>
+
+  <!-- Fonts: self-hosted Lato, the one family -->
+  <link rel="preload" href="fonts/lato-400.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high" />
+  <link rel="preload" href="fonts/lato-700.woff2" as="font" type="font/woff2" crossorigin />
+
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#content">skip to content</a>
+
+  <nav class="tab-nav" aria-label="menu sections">
+    <a href="#coffee" class="tab-link" data-tab="coffee">coffee</a>
+    <a href="#cocktails" class="tab-link" data-tab="cocktails">cocktails</a>
+  </nav>
+
+  <p id="status" class="status" aria-live="polite"></p>
+
+  <main id="content" tabindex="-1">
+    <noscript><p class="notice">javascript is off: the menu cannot render. enable it and reload.</p></noscript>
+    <div id="tab-coffee" class="tab-panel" role="region" aria-label="coffee"><!-- rendered by app.js --></div>
+    <div id="tab-cocktails" class="tab-panel" role="region" aria-label="cocktails"><!-- rendered by app.js --></div>
+    <div id="debug" class="debug" hidden></div>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
