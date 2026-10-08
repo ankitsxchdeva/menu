@@ -390,6 +390,7 @@ test("golden: real ingredients fixture parses to the exact frozen map", () => {
     "grenadine": true,
     "condensed milk": true,
     "sarti rosa": true,
+    "cookie butter": true,
   });
   assert.deepEqual(warnings, []);
 });
@@ -428,7 +429,7 @@ test("golden: real menu.js x real sheet -> exact visible slugs + exact warnings"
   assert.deepEqual(syrups, ["vanilla", "caramel", "chocolate"]);
   assert.deepEqual(extras.map((e) => e.name), ["plain", "salted", "vanilla"]);
   assert.deepEqual(espresso.map((d) => d.name), ["americano", "cortado", "latte"]);
-  assert.deepEqual(specials.map((s) => s.name), ["vietnamese iced coffee"]);
+  assert.deepEqual(specials.map((s) => s.name), ["vietnamese iced coffee", "cookie butter iced latte"]);
   // Every menu key has a sheet row: zero warnings.
   assert.deepEqual(warnings, []);
 });

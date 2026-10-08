@@ -23,7 +23,8 @@ export const MENU = {
     // Standalone coffee drinks, each gated on its ingredients (chicory is
     // always stocked, so vietnamese iced coffee hangs off condensed milk).
     specials: [
-      { name: "vietnamese iced coffee", meta: "chicory coffee / condensed milk", ingredients: ["condensed milk"] }
+      { name: "vietnamese iced coffee", meta: "chicory coffee / condensed milk", ingredients: ["condensed milk"] },
+      { name: "cookie butter iced latte", meta: "espresso / cookie butter / milk", ingredients: ["cookie butter"] }
     ],
     // Tea: always in stock, no checkboxes.
     teas: ["white", "green", "oolong", "black", "chai"],
